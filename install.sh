@@ -71,7 +71,7 @@ git clone https://github.com/yuhapl/linbe.git /opt/linbe
 
 # Установка зависимостей
 echo -e "${YELLOW}Устанавливаем зависимости...${NC}"
-cd /opt/linbe/xray-manager
+cd /opt/linbe
 npm install
 
 # Создание файла конфигурации
@@ -91,7 +91,7 @@ After=network.target mongodb.service
 [Service]
 Type=simple
 User=$USER
-WorkingDirectory=/opt/linbe/xray-manager
+WorkingDirectory=/opt/linbe
 Environment="PATH=/root/.local/share/fnm/current/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 ExecStart=/root/.local/share/fnm/current/bin/npm start
 Restart=on-failure
@@ -100,6 +100,11 @@ RestartSec=10
 [Install]
 WantedBy=multi-user.target
 EOF
+
+# Установка прав на исполнение скриптов
+echo -e "${YELLOW}Устанавливаем права на исполнение скриптов...${NC}"
+chmod +x /opt/linbe/install.sh
+chmod +x /opt/linbe/update.sh
 
 # Перезагрузка systemd и запуск сервиса
 echo -e "${YELLOW}Запускаем сервис...${NC}"

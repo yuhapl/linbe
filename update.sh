@@ -35,7 +35,6 @@ git pull
 
 # Установка зависимостей
 echo -e "${YELLOW}Обновляем зависимости...${NC}"
-cd xray-manager
 /root/.local/share/fnm/current/bin/npm install
 
 # Запуск сервиса
