@@ -60,7 +60,11 @@ class BotService {
             ]
         };
 
-        await context.sendMessage(message, { reply_markup: keyboard });
+        await context.api.sendMessage({
+            chat_id: context.chatId,
+            text: message,
+            reply_markup: keyboard
+        });
     }
 
     async showManagementMenu(context) {
@@ -72,12 +76,21 @@ class BotService {
             ]
         };
 
-        await context.editMessageText('Выберите действие:', { reply_markup: keyboard });
+        await context.api.editMessageText({
+            chat_id: context.chatId,
+            message_id: context.messageId,
+            text: 'Выберите действие:',
+            reply_markup: keyboard
+        });
     }
 
     async showCreateUserForm(context) {
         // Здесь будет форма создания пользователя
-        await context.editMessageText('Форма создания пользователя будет реализована позже');
+        await context.api.editMessageText({
+            chat_id: context.chatId,
+            message_id: context.messageId,
+            text: 'Форма создания пользователя будет реализована позже'
+        });
     }
 
     async showUsersList(context) {
@@ -93,10 +106,18 @@ class BotService {
                     `Срок действия: ${user.expire ? new Date(user.expire).toLocaleDateString() : 'Бессрочно'}\n\n`;
             }
 
-            await context.editMessageText(message);
+            await context.api.editMessageText({
+                chat_id: context.chatId,
+                message_id: context.messageId,
+                text: message
+            });
         } catch (error) {
             console.error('Error showing users list:', error);
-            await context.editMessageText('Ошибка при получении списка пользователей');
+            await context.api.editMessageText({
+                chat_id: context.chatId,
+                message_id: context.messageId,
+                text: 'Ошибка при получении списка пользователей'
+            });
         }
     }
 
@@ -113,10 +134,18 @@ class BotService {
                     `Всего: ${this.formatTraffic(stats.up + stats.down)}\n\n`;
             }
 
-            await context.editMessageText(message);
+            await context.api.editMessageText({
+                chat_id: context.chatId,
+                message_id: context.messageId,
+                text: message
+            });
         } catch (error) {
             console.error('Error showing traffic stats:', error);
-            await context.editMessageText('Ошибка при получении статистики трафика');
+            await context.api.editMessageText({
+                chat_id: context.chatId,
+                message_id: context.messageId,
+                text: 'Ошибка при получении статистики трафика'
+            });
         }
     }
 

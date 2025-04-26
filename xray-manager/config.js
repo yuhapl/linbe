@@ -10,7 +10,6 @@ module.exports = {
     
     // Xray settings
     XRAY_CONFIG_PATH: process.env.XRAY_CONFIG_PATH || '/etc/xray/config.json',
-    XRAY_API_PORT: process.env.XRAY_API_PORT || 10085,
     
     // User management settings
     DEFAULT_DATA_LIMIT: process.env.DEFAULT_DATA_LIMIT || 10 * 1024 * 1024 * 1024, // 10GB

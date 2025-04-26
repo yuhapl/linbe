@@ -47,7 +47,6 @@ MONGO_URI=mongodb://localhost:27017/xray-manager
 
 # Xray settings
 XRAY_CONFIG_PATH=/etc/xray/config.json
-XRAY_API_PORT=10085
 
 # User management settings
 DEFAULT_DATA_LIMIT=10737418240  # 10GB in bytes
